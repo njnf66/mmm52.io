@@ -19,7 +19,7 @@
     </script>
 </head>
 
-<body>
+<body onload="onload()">
     <span>用浏览器打开可全屏浏览</span>
     <div class="main">
         <div><input type="text" id="ipt1" placeholder="姓名"></div>
@@ -49,10 +49,11 @@
             location.href = 'mmm5.io/index.html'
         })
 
-        if ((document.getElementById('ipt1').value != "") && (document.getElementById('ipt2').value != "")) {
-            window.onload = function () { //用于 网页一打开即运行的代码
-                document.getElementById("btn").click();
-            };
+        function onload() {
+            if ((document.getElementById('ipt1').value != "") && (document.getElementById('ipt2').value != "")) {
+                document.getElementById("btn").click()
+                // setTimeout(document.getElementById("btn").click(),500) 
+            }
         }
     </script>
 </body>
