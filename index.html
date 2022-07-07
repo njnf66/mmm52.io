@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>福州大学一码通</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="flexible的副本.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-209341714-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-209341714-1');
+    </script>
+</head>
+
+<body>
+    <span>用浏览器打开可全屏浏览</span>
+    <div class="main">
+        <div><input type="text" id="ipt1" placeholder="姓名"></div>
+        <div><input type="text" id="ipt2" placeholder="学院"></div>
+        <!-- <div><input type="text" id="ipt3" placeholder="核心价值观(二字）"></div> -->
+        <ul class="into">
+            <img id="btn" src="圆@2x.png" alt="">
+        </ul>
+    </div>
+    <script>
+        if ((document.getElementById('ipt1').value == "undefined") || (document.getElementById('ipt1').value == "null")) {
+            document.getElementById('ipt1').value = '';
+        }
+        else {
+            document.getElementById('ipt1').value = localStorage.getItem('tongXingMa_stuName');// 本地“键值对”读出,首次值为'undefined'。;
+        }
+        if ((document.getElementById('ipt2').value == "undefined") || (document.getElementById('ipt2').value == "null")) {
+            document.getElementById('ipt2').value = '';
+        }
+        else {
+            document.getElementById('ipt2').value = localStorage.getItem('tongXingMa_stuDept');// 本地“键值对”读出,首次值为'undefined'。
+        }
+        var img = document.querySelector('.into');
+        img.addEventListener('click', function () { // 当click时，把信息存进本地
+            localStorage.setItem('tongXingMa_stuName', document.getElementById('ipt1').value);    //用于存入的。
+            localStorage.setItem('tongXingMa_stuDept', document.getElementById('ipt2').value);
+            location.href = 'mmm5.io/index.html'
+        })
+
+        if ((document.getElementById('ipt1').value != "") && (document.getElementById('ipt2').value != "")) {
+            window.onload = function () { //用于 网页一打开即运行的代码
+                document.getElementById("btn").click();
+            };
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<!-- <body id="txmBody" onfocus="kaishi()"> -->
+
+<body id="txmBody">
+  <div hidden="true"></div>
+  <input style="margin-top: 20%;margin-left: 60px;" id="Button1" type="button" value="开始全屏" />
+  <input style="margin-left: 30px;" id="Button2" type="button" value="关闭全屏" onclick="guanbi()" />
+
+  <script type="text/javascript">
+    // // 延时自动点击按钮
+    // window.onload = function () {
+    //   setTimeout(function () {
+    //     document.getElementById("Button1").click();
+    //   }, 4500);
+    // }
+
+    // 连续点击7秒可重置“姓名”(demo)
+    var timer = null;
+    var waitTime = 500; // 该时间间隔内点击两次，才算连续点击（单位：ms）
+    var lastTime = new Date().getTime();     // 上次点击时间
+    var lastTimeFirst = new Date().getTime();// 首次点击时间
+    var count = 0; // 连续点击次数
+    // 获取对象
+    document.getElementById('Button1').onclick = function (event) {
+      var currentTime = new Date().getTime();
+      // 计算两次相邻点击的时间间隔，计数。
+      count = (currentTime - lastTime) < waitTime ? count + 1 : 1;
+      lastTime = new Date().getTime();
+      if (count == 1) {
+        lastTimeFirst = new Date().getTime();// 首次点击时间重置
+      }
+      clearTimeout(timer);
+      // timer = setTimeout(function () {
+      // clearTimeout(timer);
+      // 处理点击事件
+      console.log(count);
+
+      if (count > 4) {
+        // 连续点击五次或者五次以上的点击事件
+        console.log('点击超过4次了')
+        count = 1;
+      }
+      // }, waitTime + 10)
+    };
+
+
+
+    function kaishi() {
+      var docElm = document.documentElement;
+      //W3C   
+      if (docElm.requestFullscreen) {
+        docElm.requestFullscreen();
+      }
+      //FireFox   
+      else if (docElm.mozRequestFullScreen) {
+        docElm.mozRequestFullScreen();
+      }
+      //Chrome等   
+      else if (docElm.webkitRequestFullScreen) {
+        docElm.webkitRequestFullScreen();
+      }
+      //IE11   
+      else if (elem.msRequestFullscreen) {
+        elem.msRequestFullscreen();
+      }
+    }
+
+    function guanbi() {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.webkitCancelFullScreen) {
+        document.webkitCancelFullScreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+    }
+
+    // 自加载代码
+    document.addEventListener('DOMContentLoaded', function () {
+      console.log('html页面加载完成');
+      var bt1Text = document.getElementById('Button1').value;
+      console.log(bt1Text);
+
+      // if (bt1Text == "开始全屏") {
+      // document.getElementById('txmBody').blur()
+      // document.getElementById('txmBody').focus();
+      // document.getElementById('txmBody').onfocus();
+      // }
+      console.log('html页面加载完成*2');
+
+    });
+
+    //全屏变换时的事件
+    document.addEventListener("fullscreenchange", function () {
+      fullscreenState.innerHTML = (document.fullscreen) ? "" : "not ";
+    }, false);
+
+    document.addEventListener("mozfullscreenchange", function () {
+      fullscreenState.innerHTML = (document.mozFullScreen) ? "" : "not ";
+    }, false);
+
+    document.addEventListener("webkitfullscreenchange", function () {
+      fullscreenState.innerHTML = (document.webkitIsFullScreen) ? "" : "not ";
+    }, false);
+
+    document.addEventListener("msfullscreenchange", function () {
+      fullscreenState.innerHTML = (document.msFullscreenElement) ? "" : "not ";
+    }, false);
+  </script>
+</body>
+
+</html>
