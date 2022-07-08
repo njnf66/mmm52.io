@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,minimum-scale=1">
     <title>福州大学一码通</title>
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="index.css">
@@ -17,6 +17,12 @@
         gtag('js', new Date());
         gtag('config', 'UA-209341714-1');
     </script>
+    <style>
+        body {
+            /* 默认隐藏界面，提升用户体验 */
+            visibility: hidden;
+        }
+    </style>
 </head>
 
 <body id="body" onload="onload()">
@@ -29,28 +35,23 @@
         </ul>
     </div>
     <script>
-        if ((document.getElementById('ipt1').value == "undefined") || (document.getElementById('ipt1').value == "null")) {
-            document.getElementById('ipt1').value = '';
-        }
-        else {
-            document.getElementById('ipt1').value = localStorage.getItem('tongXingMa_stuName');// 本地“键值对”读出,首次值为'undefined'。;
-        }
-        if ((document.getElementById('ipt2').value == "undefined") || (document.getElementById('ipt2').value == "null")) {
-            document.getElementById('ipt2').value = '';
-        }
-        else {
-            document.getElementById('ipt2').value = localStorage.getItem('tongXingMa_stuDept');// 本地“键值对”读出,首次值为'undefined'。
-        }
-        var img = document.querySelector('.into');
-        img.addEventListener('click', function () { // 当click时，把信息存进本地
+        var btn = document.querySelector('.into');
+        btn.addEventListener('click', function () { // 当click时，把信息存进本地
             localStorage.setItem('tongXingMa_stuName', document.getElementById('ipt1').value);    //用于存入的。
             localStorage.setItem('tongXingMa_stuDept', document.getElementById('ipt2').value);
             location.href = 'mmm5.io/index.html'
         })
 
         function onload() {
-            if ((document.getElementById('ipt1').value != "") && (document.getElementById('ipt2').value != "")) {
-                document.getElementById('body').style.visibility="hidden";   // 隐藏界面，提升用户体验
+            document.getElementById('ipt1').value = localStorage.getItem('tongXingMa_stuName');// 本地“键值对”读出,首次值为'undefined'。;
+            document.getElementById('ipt2').value = localStorage.getItem('tongXingMa_stuDept');// 本地“键值对”读出,首次值为'undefined'。
+            if ((document.getElementById('ipt1').value == "undefined") || (document.getElementById('ipt1').value == "null(仅可修改一次)")) {
+                document.getElementById('ipt1').value = '';
+                document.getElementById('body').style.visibility = "visible";
+            } else if ((document.getElementById('ipt2').value == "undefined") || (document.getElementById('ipt2').value == "null(仅可修改一次)")) {
+                document.getElementById('ipt2').value = '';
+                document.getElementById('body').style.visibility = "visible";
+            } else {
                 // document.getElementById("btn").click();
                 location.href = 'mmm5.io/index.html';
             }
